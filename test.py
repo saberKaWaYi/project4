@@ -130,7 +130,10 @@ def fc(dataset,config,name,show=True,save_=False):
         else:
             plt.show()
     else:
-        name=f"{config["hostname"]}_{config["interface"]}_{config["begin_time"]}_{config["end_time"]}_{name}_main.jpg".replace(" ","_").replace(":","_")
+        name=f"{config["hostname"]}_{config["interface"]}_{config["begin_time"]}_{config["end_time"]}_{name}_{m.small_window_len}_main.jpg".replace(" ","_").replace(":","_")
+        dir_path=os.path.dirname(name)
+        if dir_path:
+            os.makedirs(dir_path,exist_ok=True)
         plt.savefig(name)
     plt.close()
     return sum(alerts)
@@ -179,26 +182,12 @@ class Test:
         self.count+=(x+y)
 
 if __name__=="__main__":
-    # lt=[('CNTSA-LY-ASR9K-GW-01', 'Bundle-Ether190.2021'), ('SGSIN-GS-J10003-GW-01', 'ae38.3629'), ('CNCAN-SD-MX204-GW-01', 'ae21.2454'), ('CNTSA-LY-ASR9K-GW-01', 'Bundle-Ether190.3032'), ('CNPEK-ZJY-MX204-GW-01', 'ae9.2785'), ('CNPEK-ZJY-MX204-GW-01', 'ae9.2479'), ('VNSGN-FPT-MX204-GW-01', 'ae66.2044'), ('CNTSA-LY-ASR9K-GW-01', 'Bundle-Ether190.3266'), ('JPTKY-COLT-MX204-GW-01', 'ae8.2998'), ('JPTKY-COLT-MX204-GW-01', 'ae8.2412'), ('CNHKG-MP-MX204-GW-01', 'ae17.3768'), ('CNTSA-LY-ASR9K-GW-01', 'Bundle-Ether190.3271'), ('CNCAN-SD-MX204-GW-01', 'ae21.2223'), ('CNPEK-ZJY-MX204-GW-01', 'ae9.2110'), ('CNTSA-LY-ASR9K-GW-01', 'Bundle-Ether190.3416'), ('KRICN-KINX-MX204-GW-01', 'ae24.2096'), ('VNSGN-FPT-MX204-GW-01', 'ae66.2092'), ('CNPEK-ZJY-MX204-GW-01', 'ae9.2876'), ('USDAL-DB1-J10003-GW-04', 'ae6.3156'), ('SGSIN-GS-J10003-GW-01', 'ae49.2220'), ('CNCAN-SD-MX204-GW-01', 'ae21.3219'), ('CNPEK-ZJY-MX204-GW-01', 'ae9.3162'), ('CNPEK-ZJY-MX204-GW-01', 'ae9.3500'), ('USDAL-DAL00-J10003-GW-01', 'ae50.2193'), ('CNTSA-LY-ASR9K-GW-01', 'Bundle-Ether190.2553'), ('USDAL-DAL00-J10003-GW-01', 'ae50.2305'), ('CNTSA-LY-ASR9K-GW-01', 'Bundle-Ether190.2423'), ('CNCAN-SD-MX204-GW-01', 'ae21.3617'), ('SGSIN-GS-J10003-GW-01', 'ae49.2048'), ('CNCAN-SD-MX204-GW-01', 'ae21.3425'), ('CNTSA-LY-ASR9K-GW-01', 'Bundle-Ether190.3183'), ('CNTSA-LY-ASR9K-GW-01', 'Bundle-Ether190.2019'), ('KRICN-KINX-MX204-GW-01', 'ae24.3345'), ('USDAL-DAL00-J10003-GW-01', 'ae50.2083'), ('DEFRA-DRT-J10003-GW-01', 'ae32.2123'), ('USDAL-DAL00-J10003-GW-01', 'ae50.2049'), ('CNTSA-LY-ASR9K-GW-01', 'Bundle-Ether190.3657'), ('CNCAN-SD-MX204-GW-01', 'ae21.2592'), ('CNTSA-LY-ASR9K-GW-01', 'Bundle-Ether190.2103'), ('CNTSA-LY-ASR9K-GW-01', 'Bundle-Ether190.3749'), ('DEFRA-DRT-J10003-GW-01', 'ae12.3651'), ('USIAD-IAD39-J10003-GW-01', 'ae57.2022'), ('CNPEK-ZJY-MX204-GW-01', 'ae9.2442'), ('CNHKG-MP-MX204-GW-01', 'ae17.2933'), ('CNPEK-ZJY-MX204-GW-01', 'ae9.2590'), ('CNCAN-SD-MX204-GW-01', 'ae21.3048'), ('CNCAN-SD-MX204-GW-01', 'ae21.2354'), ('SGSIN-GS-J10003-GW-01', 'ae49.2009'), ('MYJHB-JB1-MX204-GW-01', 'ae30.2507'), ('SGSIN-GS-J10003-GW-01', 'ae49.2020'), ('DEFRA-DRT-J10003-GW-01', 'ae32.2072'), ('USDAL-DAL00-J10003-GW-01', 'ae50.2174'), ('CNHKG-MP-MX204-GW-01', 'ae17.2905'), ('DEFRA-DRT-J10003-GW-01', 'ae12.3831'), ('CNTSA-LY-ASR9K-GW-01', 'Bundle-Ether190.3391'), ('CNPEK-ZJY-MX204-GW-01', 'ae9.2402'), ('CNPEK-ZJY-MX204-GW-01', 'ae9.3034'), ('USDAL-DAL00-J10003-GW-01', 'ae50.2280'), ('CNTSA-LY-ASR9K-GW-01', 'Bundle-Ether190.3661'), ('CNCAN-SD-MX204-GW-01', 'ae21.2781'), ('CNHKG-MP-MX204-GW-01', 'ae17.2487'), ('CNPEK-ZJY-MX204-GW-01', 'ae9.2087'), ('KRICN-KINX-MX204-GW-01', 'ae24.3816'), ('SGSIN-GS-J10003-GW-01', 'ae49.2076'), ('JPTKY-COLT-MX204-GW-01', 'ae8.2640'), ('CNTSA-LY-ASR9K-GW-01', 'Bundle-Ether190.2052'), ('SGSIN-GS-J10003-GW-01', 'ae49.2121'), ('CNCAN-SD-MX204-GW-01', 'ae21.2139'), ('CNPEK-ZJY-MX204-GW-01', 'ae9.2842'), ('SGSIN-GS-J10003-GW-01', 'ae38.2109'), ('CNCAN-SD-MX204-GW-01', 'ae21.2663'), ('KRICN-KINX-MX204-GW-01', 'ae24.3198'), ('CNTSA-LY-ASR9K-GW-01', 'Bundle-Ether190.2404'), ('CNTSA-LY-ASR9K-GW-01', 'Bundle-Ether190.3450'), ('CNCAN-SD-MX204-GW-01', 'ae21.3739'), ('SGSIN-GS-J10003-GW-01', 'ae11.2540'), ('CNTSA-LY-ASR9K-GW-01', 'Bundle-Ether190.3701'), ('CNCAN-SD-MX204-GW-01', 'ae21.3796'), ('USDAL-DAL00-J10003-GW-01', 'ae50.2016'), ('CNTSA-LY-ASR9K-GW-01', 'Bundle-Ether190.2260'), ('CNPEK-ZJY-MX204-GW-01', 'ae9.2447'), ('KRICN-KINX-MX204-GW-01', 'ae24.3526'), ('SGSIN-GS-J10003-GW-01', 'ae38.3607'), ('CNCAN-SD-MX204-GW-01', 'ae21.2593'), ('KRICN-KINX-MX204-GW-01', 'ae24.3792'), ('CNTSA-LY-ASR9K-GW-01', 'Bundle-Ether190.2636'), ('SGSIN-GS-J10003-GW-01', 'ae11.2219'), ('CNTSA-LY-ASR9K-GW-01', 'Bundle-Ether190.3930'), ('USDAL-DAL00-J10003-GW-01', 'ae50.1865'), ('SGSIN-GS-J10003-GW-01', 'ae49.2206'), ('CNSHA-ZR-MX204-GW-01', 'ae40.2045'), ('KRICN-KINX-MX204-GW-01', 'ae24.2153'), ('USDAL-DAL00-J10003-GW-01', 'ae50.2214'), ('CNPEK-ZJY-MX204-GW-01', 'ae9.2962'), ('SGSIN-GS-J10003-GW-01', 'ae49.2152'), ('SGSIN-GS-J10003-GW-01', 'ae49.2029'), ('CNPEK-ZJY-MX204-GW-01', 'ae9.2711'), ('CNTSA-LY-ASR9K-GW-01', 'Bundle-Ether190.2283'), ('CNTSA-LY-ASR9K-GW-01', 'Bundle-Ether190.2081'), ('CNHKG-MP-MX204-GW-01', 'ae17.3402'), ('JPTKY-COLT-MX204-GW-01', 'ae8.3152'), ('CNTSA-LY-ASR9K-GW-01', 'Bundle-Ether190.3035'), ('CNPEK-ZJY-MX204-GW-01', 'ae9.2420'), ('CNCAN-SD-MX204-GW-01', 'ae21.3742'), ('SGSIN-GS-J10003-GW-01', 'ae49.2071'), ('CNPEK-ZJY-MX204-GW-01', 'ae9.2427'), ('CNCAN-SD-MX204-GW-01', 'ae21.3057'), ('JPTKY-COLT-MX204-GW-01', 'ae8.3429'), ('CNPEK-ZJY-MX204-GW-01', 'ae9.3175'), ('CNTSA-LY-ASR9K-GW-01', 'Bundle-Ether190.3729'), ('CNTSA-LY-ASR9K-GW-01', 'Bundle-Ether190.3047'), ('CNTSA-LY-ASR9K-GW-01', 'Bundle-Ether190.2732'), ('CNPEK-ZJY-MX204-GW-01', 'ae9.2409'), ('JPTKY-COLT-MX204-GW-01', 'ae8.3768'), ('CNPEK-ZJY-MX204-GW-01', 'ae9.3413'), ('USDAL-DAL00-J10003-GW-01', 'ae50.2291'), ('CNPEK-ZJY-MX204-GW-01', 'ae9.2816'), ('USDAL-DAL00-J10003-GW-01', 'ae50.2295'), ('JPTKY-COLT-MX204-GW-01', 'ae8.2953'), ('USDAL-DAL00-J10003-GW-01', 'ae50.2005'), ('CNTSA-LY-ASR9K-GW-01', 'Bundle-Ether190.2515'), ('CNSHA-BX-MX240-GW-01', 'ae40.2045'), ('JPTKY-COLT-MX204-GW-01', 'ae8.3254'), ('CNTSA-LY-ASR9K-GW-01', 'Bundle-Ether190.3052'), ('MYJHB-JB1-MX204-GW-01', 'ae30.2492'), ('SGSIN-GS-J10003-GW-01', 'ae49.2178'), ('CNTSA-LY-ASR9K-GW-01', 'Bundle-Ether190.3849'), ('SGSIN-GS-J10003-GW-01', 'ae49.2241'), ('CNPEK-ZJY-MX204-GW-01', 'ae9.2462'), ('CNTSA-LY-ASR9K-GW-01', 'Bundle-Ether190.3615'), ('CNPEK-ZJY-MX204-GW-01', 'ae9.2765'), ('DEFRA-DRT-J10003-GW-01', 'ae32.2274'), ('JPTKY-COLT-MX204-GW-01', 'ae8.3331'), ('DEFRA-DRT-J10003-GW-01', 'ae12.3800'), ('CNCAN-SD-MX204-GW-01', 'ae21.2612'), ('CNPEK-ZJY-MX204-GW-01', 'ae9.2542'), ('CNTSA-LY-ASR9K-GW-01', 'Bundle-Ether190.2747'), ('CNCAN-SD-MX204-GW-01', 'ae21.2269')]
-    # config={
-    #     "hostname":"",
-    #     "interface":"",
-    #     "begin_time":"2025-07-01 00:00:00",
-    #     "end_time":"2025-08-01 00:00:00"
-    # }
-    # lt=[('USIAD-IAD39-J10003-GW-01', 'ae57')]
-    # config={
-    #     "hostname":"",
-    #     "interface":"",
-    #     "begin_time":"2025-02-01 00:00:00",
-    #     "end_time":"2025-03-01 00:00:00"
-    # }
-    lt=[('JPTKY-COLT-MX204-GW-01', 'ae8')]
+    lt=[("SGSIN-SG3-J10003-C-02","xe-0/0/1:0")]
     config={
         "hostname":"",
         "interface":"",
-        "begin_time":"2025-09-15 00:00:00",
-        "end_time":"2025-10-10 00:00:00"
+        "begin_time":"2025-10-25 00:00:00",
+        "end_time":"2025-11-06 00:00:00"
     }
     m=Test()
     for i in lt:

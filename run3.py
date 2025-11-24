@@ -85,10 +85,11 @@ def post2(alert):
         'type':'network_traffic',
         'group':'network_snmp_dynamic',
         'securityLevel':'Emergency',
-        'message':f"{alert['alert_msg']['hostname']}_{alert['alert_msg']['interface']}[网络流量方向({alert['alert_msg']['traffic_direction']})],当前流量值为{alert['alert_msg']['recent_traffic'][-1]},出现流量突降异常.\nCustomer_最近的流量值依次为:{','.join(alert['alert_msg']['recent_traffic'])}。",
+        'message':f"{alert['alert_msg']['hostname']}_{alert['alert_msg']['interface']}[网络流量方向({alert['alert_msg']['traffic_direction']})],当前流量值为{alert['alert_msg']['recent_traffic'][-1]},出现流量突降异常.\nCustomer_最近的流量值依次为:{','.join(alert['alert_msg']['recent_traffic'])}。流量突变V2。",
         'logTimestamp':alert['alert_msg']['alert_time'],
         'ip':'',
-        'tag1':''
+        'tag1':'',
+        'official_explanation':'流量突变异常V2'
     }
     try:
         response=requests.post(url,json=json_data,headers={'content-type':'application/json'})

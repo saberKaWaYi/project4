@@ -232,7 +232,7 @@ class Run:
                     with self.lock1:
                         if (message.value["tags"]["host_name"],message.value["tags"]["ifName"]) in self.already_interface:
                             self.batch.append(message)
-                    if len(self.batch)>=1000:
+                    if len(self.batch)>=250:
                         with self.lock2:
                             self.tasks.append((2,"test"))
                             for i in self.batch:
@@ -249,15 +249,15 @@ class Run:
         for i in lt:
             j=i*8
             if j/1000<1:
-                temp.append(f"{round(j,4)}B");continue
+                temp.append(f"{round(j,2)}B");continue
             j/=1000
             if j/1000<1:
-                temp.append(f"{round(j,4)}KB");continue
+                temp.append(f"{round(j,2)}KB");continue
             j/=1000
             if j/1000<1:
-                temp.append(f"{round(j,4)}MB");continue
+                temp.append(f"{round(j,2)}MB");continue
             j/=1000
-            temp.append(f"{round(j,4)}GB")
+            temp.append(f"{round(j,2)}GB")
         return temp
 
     def process(self,hostname,interface,traffic_in,traffic_out,timestamp):

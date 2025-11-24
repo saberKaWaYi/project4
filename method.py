@@ -36,7 +36,7 @@ class method:
         self.last_alert_time=None
         ############################################################
         ############################################################
-        self.small_window_len=30
+        self.small_window_len=20
         self.low_limit=150*1000*1000/8
         ############################################################
 
@@ -211,11 +211,6 @@ class method:
         if self.history_mutations[-5]==0:
             self.alert=0
             return
-        diff=self.history_mutations[-5]-self.median[-5]
-        for i in range(-4,0):
-            if self.history_mutations[-5]-self.median[i]<=diff*0.8:
-                self.alert=0
-                return
         self.last_alert_time=self.time
         self.alert=1
 
@@ -237,7 +232,5 @@ class method:
             self.mutation=0;self.history_mutations.append(0)
             self.alert=0;self.history_alerts.append(0)
         else:
-            self.get_is_mutation()
-            self.history_mutations.pop(0);self.history_mutations.append(self.mutation)
-            self.get_is_alert()
-            self.history_alerts.pop(0);self.history_alerts.append(self.alert)
+            self.get_is_mutation();self.history_mutations.append(self.mutation)
+            self.get_is_alert();self.history_alerts.append(self.alert)
