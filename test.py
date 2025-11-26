@@ -182,12 +182,12 @@ class Test:
         self.count+=(x+y)
 
 if __name__=="__main__":
-    lt=[("SGSIN-SG3-J10003-C-02","xe-0/0/1:0")]
+    lt=[("USLAX-CT-ASR9K-C-01","TenGigE0/0/2/0")]
     config={
         "hostname":"",
         "interface":"",
-        "begin_time":"2025-10-25 00:00:00",
-        "end_time":"2025-11-06 00:00:00"
+        "begin_time":"2025-11-20 00:00:00",
+        "end_time":"2025-11-27 00:00:00"
     }
     m=Test()
     for i in lt:
